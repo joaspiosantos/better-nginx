@@ -1,0 +1,23 @@
+services:
+  better-nginx:
+    build: .
+    image: better-nginx
+    restart: unless-stopped
+    volumes:
+      # Auto-discovery de containers Docker (read-only, evita escrita indevida no daemon)
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # Config existente do nginx, se já tiver uma (deixe vazio/comente pra começar do zero)
+      # - /etc/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      # Modo borda: expõe o proxy pro mundo. Comente estas linhas pra rodar em modo upstream
+      # (atrás de outro proxy/LB), mantendo só a rede docker interna.
+      - '80:80'
+      - '443:443'
+      # Porta da GUI de administração
+      - '3000:3000'
+    networks:
+      - better-nginx-net
+
+networks:
+  better-nginx-net:
+    name: better-nginx-net

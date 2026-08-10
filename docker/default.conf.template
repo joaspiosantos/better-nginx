@@ -1,0 +1,10 @@
+# managed-by: better-nginx (manual)
+server {
+  listen 80 default_server;
+  server_name _;
+
+  location / {
+    return 200 "better-nginx is running. Configure server blocks via the admin UI.\n";
+    add_header Content-Type text/plain;
+  }
+}
