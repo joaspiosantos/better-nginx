@@ -47,6 +47,14 @@ function toDiscoveredAny(container: ContainerInfo): DiscoveredContainer | null {
 	};
 }
 
+async function findContainer(
+	docker: Docker,
+	id: string,
+): Promise<DiscoveredContainer | null> {
+	const info = await docker.listContainers({ filters: { id: [id] } });
+	return info[0] ? toDiscovered(info[0]) : null;
+}
+
 export function createDockerodeAdapter(): DockerClient {
 	const docker = new Docker({ socketPath: "/var/run/docker.sock" });
 
@@ -72,16 +80,16 @@ export function createDockerodeAdapter(): DockerClient {
 						const event = JSON.parse(chunk.toString());
 						if (event.Type !== "container") return;
 
+						const id = event.Actor?.ID;
+						if (!id) return;
+
 						if (event.Action === "start") {
-							const info = await docker.listContainers({
-								filters: { id: [event.id] },
-							});
-							const discovered = info[0] ? toDiscovered(info[0]) : null;
+							const discovered = await findContainer(docker, id);
 							if (discovered) onStart(discovered);
 						}
 
 						if (event.Action === "die") {
-							onDie(event.id);
+							onDie(id);
 						}
 					});
 				},
