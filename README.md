@@ -63,6 +63,11 @@ services:
 
 O `proxy_pass` gerado aponta direto para o IP do container na rede Docker — não depende de portas publicadas no host.
 
+![Auto-discovery de containers Docker em tempo real](docs/screenshots/docker-discovery.gif)
+
+> [!NOTE]
+> A GUI hoje só revalida a lista ao recarregar a página/navegar — o gif acima mostra alguns reloads automáticos pra simular isso. Ainda não há push/polling em tempo real do frontend.
+
 ## Config existente do Nginx
 
 Se você já tem uma config de produção e quer que o `better-nginx` assuma o controle dela, monte o volume no `docker-compose.yml`:
@@ -97,4 +102,9 @@ O mount de `/var/run/docker.sock` equivale a acesso root no host. É montado com
 
 ## Fora do escopo (roadmap)
 
-Autenticação, gestão remota via SSH, upstreams/load balancing avançado, gestão de certificados (certbot automático), multi-server, múltiplas redes Docker simultâneas.
+- [ ] Autenticação
+- [ ] Gestão remota via SSH
+- [ ] Upstreams/load balancing avançado
+- [ ] Gestão de certificados (certbot automático)
+- [ ] Multi-server
+- [ ] Múltiplas redes Docker simultâneas
