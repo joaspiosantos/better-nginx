@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+:root {
+	--bg: #0a0b0d;
+	--bg-raised: #101215;
+	--panel: #14161a;
+	--line: #262a30;
+	--line-bright: #3a3f47;
+	--text: #c7ccd1;
+	--text-dim: #6b7280;
+	--text-bright: #f2f4f6;
+	--amber: #ffb020;
+	--amber-dim: rgba(255, 176, 32, 0.14);
+	--amber-line: rgba(255, 176, 32, 0.4);
+	--teal: #35d0c0;
+	--teal-dim: rgba(53, 208, 192, 0.14);
+	--red: #ff5c5c;
+
+	--display: "Rajdhani", ui-sans-serif, sans-serif;
+	--mono: "IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace;
+
+	color-scheme: dark;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+	min-height: 100svh;
+}
+
+body {
+	margin: 0;
+	color: var(--text);
+	background:
+		repeating-linear-gradient(
+			to bottom,
+			rgba(255, 255, 255, 0.012) 0px,
+			rgba(255, 255, 255, 0.012) 1px,
+			transparent 1px,
+			transparent 3px
+		),
+		radial-gradient(
+			ellipse 900px 500px at 15% -10%,
+			rgba(255, 176, 32, 0.07),
+			transparent 60%
+		),
+		var(--bg);
+	font-family: var(--mono);
+	font-size: 14px;
+}
+
+::selection {
+	background: var(--amber);
+	color: #14100a;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+::-webkit-scrollbar-track {
+	background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+	background: var(--line-bright);
+	border: 2px solid var(--bg);
+}
+
+@keyframes pulse-dot {
+	0%,
+	100% {
+		opacity: 1;
+		box-shadow: 0 0 0 0 var(--amber-line);
+	}
+	50% {
+		opacity: 0.55;
+		box-shadow: 0 0 0 4px transparent;
+	}
+}
+
+@keyframes rise-in {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.rise-in {
+	animation: rise-in 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
