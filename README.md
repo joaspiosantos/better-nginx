@@ -13,6 +13,10 @@ MVP: form estruturado (listen/server_name/root/locations), validação (`nginx -
 |---|---|---|
 | ![Dashboard](docs/screenshots/dashboard.png) | ![Novo Proxy Host](docs/screenshots/new-proxy-host.png) | ![Categorias](docs/screenshots/tabs.png) |
 
+| Criando um Proxy Host | Criando um Redirection Host |
+|---|---|
+| ![Proxy Host](docs/screenshots/proxy.gif) | ![Redirection Host](docs/screenshots/redirect.gif) |
+
 ## Requisitos
 
 - Docker e Docker Compose
